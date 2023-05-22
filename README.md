@@ -1,316 +1,78 @@
-# Phase 4 Full-Stack Application Project Template
-
-## Learning Goals
-
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
-
-***
+# Flask-Paced F1 Racing
 
-## Introduction
-
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin:
+# Languages
 
-```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
-.
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── client
-│   ├── README.md
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   └── src
-└── server
-    ├── app.py
-    ├── config.py
-    ├── migrations
-    ├── models.py
-    └── seed.py
-```
+Python, JavaScript, React, Flask, SQLite3, SQLAlchemy, CSS
 
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
+# Summary
 
-***
+Created a race-fans web application with mock stats to track drivers and races.
 
-## Where Do I Start?
+Generated back-end with Python and Flask / SQL Alchemy to create databases from the Python models. Front-end built with React.js components and styled with CSS.
 
-Just as with your Phase 3 Project, this will likely be one of the biggest
-projects you've undertaken so far. Your first task should be creating a Git
-repository to keep track of your work and roll back any undesired changes.
+# Frontend
 
-### Removing Existing Git Configuration
+"HOME" page is a simple welcome page.
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/cede5f30-d7e3-4a82-bd9e-cba7e6923630)
 
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
+"DRIVERS" page show all drivers and their most basic info. Users have the option to "Ban" a driver, which deletes the driver from the front-end and the back-end database. A form to Add a new driver to the list is at the bottom of the page.
 
-```console
-$ rm -rf .git .canvas
-```
+Clicking on a specific driver will take you to that driver's specific link and show more detailed information about the driver.
 
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
+"RACES" page shows a list of Circuits with their basic information. Similar to the Drivers page, this page has a form to Add a new race/circut to the list. You can also click on a specific track/circut to be taken to that specific circuit link and see more details about that race.
 
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
+The "STATS" page shows a list of mock stats that show certain drivers' best lap time for a certain Race/Grand Prix. Users also have the ability to add driver stats with a form at the bottom of the page.
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/62a80c46-45ca-4f1f-9688-c55bea2bdb8d)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/1cec67de-691f-446b-9c37-9952f10de8c7)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/a1b50ae4-ba24-40e3-b32b-df21e0344a32)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/cb317379-6f6d-4c6c-a6d4-a0b25e058704)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/b4f9d4ba-3509-497f-9d3a-86cc9aed7e28)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/5f8420e0-7c97-48ab-9c25-bee7216d2f70)
+![image](https://github.com/tambrose12/F1-Flask-Paced/assets/112665601/6ff1fd95-e3ac-466e-8a53-30a074410cbf)
 
-### Creating Your Own Git Repo
 
-First things first- rename this directory! Once you have an idea for a name,
-move one level up with `cd ..` and run `mv python-p4-project-template
-<new-directory-name>` to change its name.
+# Models
 
-> **Note: `mv` actually stands for "move", but your computer interprets this
-> rename as a move from a directory with the old name to a directory with
-> a new name.**
+Each table in our database has an id column which serves as the primary key.
 
-`cd` back into your new directory and run `git init` to create a local git
-repository. Add all of your local files to version control with `git add --all`,
-then commit them with `git commit -m'initial commit`. (You can change the
-message here- this one is just a common choice.)
+## Driver
 
-Navigate to [GitHub](github.com). In the upper-right corner of the page, click
-on the "+" dropdown menu, then select "New repository". Enter the name of your
-local repo, choose whether you would like it to be public or private, make sure
-"Initialize this repository with a README" is unchecked (you already have one),
-then click "Create repository".
+name: Driver's name represented as a string
 
-Head back to the command line and enter `git remote add origin <project name>
-<github url>`. This will map the remote repository to your local repository.
-Finally, push your first commit with `git push -u origin main`.
+car_number: Driver's car number represented as an integer
 
-Your project is now version-controlled locally and online. This will allow you
-to create different versions of your project and pick up your work on a
-different machine if the need arises.
+team: Driver's team represented as a string
 
-***
+driver_image: Url for the driver's image represented as a string
 
-## Generating Your Pipenv
+country: Driver's country represented as a string
 
-You might have noticed in the file structure- there's already a Pipfile! That
-being said, we haven't put much in there- just Python version 3.8 and ipdb.
+podiums: Driver's podiums represented as an integer
 
-Install any dependencies you know you'll need for your project, like SQLAlchemy
-and Alembic, before you begin. You can do this straight from the command line:
+dob: Driver's date of birth represented as an integer
 
-```console
-$ pipenv install flask flask-sqlalchemy flask-migrate sqlalchemy-serializer flask-restful flask-cors
-```
+bio: Driver's bio represented as an integer
 
-> _Sheesh!_
+## Race
 
-From here, you should run your second commit:
+location: Race's location represented as a string
 
-```console
-$ git add Pipfile Pipfile.lock
-$ git commit -m'add dependencies to pipenv'
-$ git push
-```
+fastest_time: Fastest time recorded for this race represented as a float
 
-Now that your environment is set up, run `pipenv shell` to enter it.
+track_image: Url for the Race's image represented as a string
 
-***
+track_length: Length of race represented as a float
 
-## Generating Your Database
+first_event: Race's first event represented as a string
 
-Once you're in your environment, you can start development wherever you'd like.
-We think it's easiest to start with setting up your database.
+laps: Total laps for the race represented as an integer
 
-`cd` into the `server/` directory, then run `flask db init migrations` to set up
-Flask-Migrate.
+details: Race details represented as a string
 
-Navigate to `models.py` and start creating your models. Remember
-to regularly run `flask db revision --autogenerate -m'<descriptive message>'`
-and `flask db upgrade head` to track your modifications to the database and
-create checkpoints in case you ever need to roll those modifications back.
+## DriverRace
 
-> **Tip: It's always a good idea to start with an empty revision! This allows
-> you to roll all the way back while still holding onto your database. You can
-> create this empty revision with `flask db revision -m'Create DB'`.**
+driver_id: A foreign key representing the id of the driver assocaited with the join
 
-If you want to seed your database, now would be a great time to write out your
-`seed.py` script and run it to generate some test data. You may want to use
-Pipenv to install Faker to save you some time.
+race_id: A foreign keu representing the id of the race associated with the join
 
-***
-
-## Generating Your Full-Stack Application
-
-You've already made a few, but let's take a look at the structure of your
-newest full-stack application.
-
-### `client/`
-
-The `client/` directory contains all of your frontend code. We've already used
-`npm` to install your standard dependencies, including React. We've also
-configured a proxy to the server for your backend at `localhost:5555` in
-`package.json`. Feel free to change this to another port- just remember to
-configure your Flask app to use another port as well!
-
-### `server/`
-
-The `server/` directory contains all of your backend code.
-
-`app.py` is your Flask application. You'll want to use Flask to build a simple
-API backend like we have in previous modules. You should use Flask-RESTful for
-your routes.
-
-You should be familiar with `models.py` and `seed.py` by now, but remember that
-you will need to use Flask-SQLAlchemy, Flask-Migrate, and SQLAlchemy-Serializer
-instead of SQLAlchemy and Alembic in your models. Don't forget to set an app
-context in your seed file as well:
-
-```py
-with app.app_context():
-    # seed here!
-
-```
-
-#### `config.py`
-
-When developing a large Python application, you might run into a common issue:
-_circular imports_. A circular import occurs when two modules import from one
-another, such as `app.py` and `models.py`. When you create a circular import and
-attempt to run your app, you'll see the following error:
-
-```console
-ImportError: cannot import name
-```
-
-If you're going to need an object in multiple modules like `app` or `db`,
-creating a _third_ module to instantiate these objects can save you a great
-deal of circular grief. Here's a good start to a Flask config file (you may
-need more if you intend to include features like authentication and passwords):
-
-```py
-# Standard library imports
-
-# Remote library imports
-from flask import Flask
-from flask_cors import CORS
-from flask_migrate import Migrate
-from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
-
-# Local imports
-
-# Instantiate app, set attributes
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
-
-# Define metadata, instantiate db
-metadata = MetaData(naming_convention={
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-})
-db = SQLAlchemy(metadata=metadata)
-migrate = Migrate(app, db)
-db.init_app(app)
-
-# Instantiate REST API
-api = Api(app)
-
-# Instantiate CORS
-CORS(app)
-
-```
-
-Now let's review that last line...
-
-#### CORS
-
-CORS (Cross-Origin Reference Sharing) is a system that uses HTTP headers to
-determine whether resources from different servers-of-origin can be accessed.
-If you're using the fetch API to connect your frontend to your Flask backend,
-you need to configure CORS on your Flask application instance. Lucky for us,
-that only takes one line:
-
-```py
-CORS(app)
-
-```
-
-By default, Flask-CORS enables CORS on all routes in your application with all
-fetching servers. You can also specify the resources that allow CORS. The
-following specifies that routes beginning with `api/` allow CORS from any
-originating server:
-
-```py
-CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-```
-
-You can also set this up resource-by-resource by importing and using the
-`@cross_origin` decorator:
-
-```py
-@app.route("/")
-@cross_origin()
-def howdy():
-  return "Howdy partner!"
-
-```
-
-***
-
-## Updating Your README.md
-
-`README.md` is a Markdown file that describes your project. These files can be
-used in many different ways- you may have noticed that we use them to generate
-entire Canvas lessons- but they're most commonly used as homepages for online
-Git repositories. **When you develop something that you want other people to
-use, you need to have a README.**
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this lesson's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit
-(you can ignore your migration files) should get at least a paragraph. Each
-function should get a small blurb.
-
-You should descibe your application first, and with a good level of
-detail. The rest should be ordered by importance to the user. (Probably
-routes next, then models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
-***
-
-## Conclusion
-
-A lot of work goes into a full-stack application, but it all relies on concepts
-that you've practiced thoroughly throughout this phase. Hopefully this template
-and guide will get you off to a good start with your Phase 4 Project.
-
-Happy coding!
-
-***
-
-## Resources
-
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-- [Python Circular Imports - StackAbuse](https://stackabuse.com/python-circular-imports/)
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)
+time: Driver's recorded time for the race represented as a float
